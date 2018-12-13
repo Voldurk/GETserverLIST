@@ -44,7 +44,7 @@ namespace ConsoleApp1
                         {
                             using (HttpResponseMessage response = await client.GetAsync( adres + request))
                             {
-                                // Cetificate acceptance
+                                // Certificate acceptance
                                 System.Net.ServicePointManager.ServerCertificateValidationCallback +=
                                     delegate (object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
                                                             System.Security.Cryptography.X509Certificates.X509Chain chain,
@@ -59,11 +59,11 @@ namespace ConsoleApp1
                                 File.AppendAllText(statusy, Timestamp + "   server:" + adres + "   status:" + statuss + Environment.NewLine);
                             }
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             String Timestamp = GetTimestamp(DateTime.Now);
-                            Console.WriteLine(Timestamp + "   INCORRECT ADDRESS INPUT: " + adres);
-                            File.AppendAllText(statusy, Timestamp + "   INCORRECT ADDRESS INPUT: " + adres + Environment.NewLine);
+                            Console.WriteLine(Timestamp + "   server:" + adres + "   status:Error  Error massage: " + ex.Message);
+                            File.AppendAllText(statusy, Timestamp + "   server:" + adres + "   status:Error  Error massage: " + ex.Message + Environment.NewLine);
                         }
                     }
                 }
