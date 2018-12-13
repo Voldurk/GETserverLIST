@@ -62,8 +62,8 @@ namespace ConsoleApp1
                         catch (Exception ex)
                         {
                             String Timestamp = GetTimestamp(DateTime.Now);
-                            Console.WriteLine(Timestamp + "   server:" + adres + "   status:Error  Error massage: " + ex.Message);
-                            File.AppendAllText(statusy, Timestamp + "   server:" + adres + "   status:Error  Error massage: " + ex.Message + Environment.NewLine);
+                            Console.WriteLine(Timestamp + "   server:" + adres + "   status:Error  Error message: " + ex.Message);
+                            File.AppendAllText(statusy, Timestamp + "   server:" + adres + "   status:Error  Error message: " + ex.Message + Environment.NewLine);
                         }
                     }
                 }
