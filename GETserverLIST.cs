@@ -18,7 +18,7 @@ namespace ConsoleApp1
             Console.WriteLine(@"This aplication requires a list of server addresses in file C:\adresy.txt");
             String GetTimestamp(DateTime value)
             {
-                return value.ToString("yyyyMMddHHmmssffff");
+                return value.ToString("yyyy-MM-dd-HH-mm-ss-ffff");
             } 
             string filepath = @"C:\adresy.txt";
             string statusy = @"C:\statusy.txt";
@@ -42,8 +42,16 @@ namespace ConsoleApp1
                     {
                         try
                         {
-                            using (HttpResponseMessage response = await client.GetAsync(@"http://" + adres + @"/?" + request))
+                            using (HttpResponseMessage response = await client.GetAsync( adres + request))
                             {
+                                // Cetificate acceptance
+                                System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                                    delegate (object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                                            System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                                            System.Net.Security.SslPolicyErrors sslPolicyErrors)
+                                    {
+                                        return true;
+                                    };
                                 String Timestamp = GetTimestamp(DateTime.Now);
                                 int status = (int)response.StatusCode;
                                 string statuss = status.ToString();
